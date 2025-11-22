@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /tmp/
+# ¡Proyecto secreto! No indexar bajo ninguna circunstancia.
+Disallow: /proyecto_secreto_flag{r0b0ts_d0nt_k33p_s3cr3ts}/

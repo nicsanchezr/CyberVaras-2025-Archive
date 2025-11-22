@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>CTFd - Login</title></head>
+<body>
+<!-- flag{html_comments_never_safe} -->
+<h2>Login</h2>
+<form action="vulnerable_search.php" method="GET">
+  <label>Username: <input name="user" /></label><br/>
+  <label>Password: <input name="pass" type="password" /></label><br/>
+  <input type="submit" value="Login"/>
+</form>
+</body>
+</html>

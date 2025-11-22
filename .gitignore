@@ -1,0 +1,15 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+*.tmp
+
+# Secretos y claves (¡Muy importante!)
+.env
+.ctfd_secret_key
+*.pem
+*.key
+
+# Bases de datos SQLite (Opcional: si quieres subir las DB de los desafíos, quita esta línea)

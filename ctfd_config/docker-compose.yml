@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  ctfd:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    image: ctfd/ctfd:3.8.0 # <--- Usar imagen preconstruida
+    restart: always
+    environment:
+      UPLOAD_FOLDER: /opt/ctfd/uploads
+      DATABASE_URL: postgresql://ctfd:ctfd@db:5432/ctfd
+      REDIS_URL: redis://redis:6379/0
+      CTF_WEB_URL: /campeonato
+    volumes:
+      - .data/uploads:/opt/ctfd/uploads
+      - .data/logs:/opt/ctfd/logs
+      # - .:/opt/CTFd # Ya no necesitamos montar el directorio del host a /opt/CTFd del contenedor
+    ports:
+      - "127.0.0.1:8000:8000" # Mapea el puerto 8000 del contenedor al puerto 8000 de localhost del host
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: ctfd
+      POSTGRES_PASSWORD: ctfd
+      POSTGRES_DB: ctfd
+    volumes:
+      - .data/db:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6
+    restart: always
+    volumes:
+      - .data/redis:/data
+
+volumes:
+  ctfd_data:
+  db_data:
+  redis_data:
